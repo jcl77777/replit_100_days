@@ -26,4 +26,6 @@ while True:
     play()
   elif user == 3:
     print("Exiting and have a nice day...")
-    break
+    exit()
+  else:
+    continue
