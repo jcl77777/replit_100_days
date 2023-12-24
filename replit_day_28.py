@@ -52,8 +52,10 @@ def fight_loop(player1, player2):
   while True:
       player1_attack = dice(4)
       print(f"{user_name1} attacks with {player1_attack}")
+      #health limit set to min 0
       characters[1] = (characters[1][0], characters[1][1], max(0,characters[1][2] - player1_attack), characters[1][3])
       print("Player 1 health: ", characters[0][2], "Player 2 health: ", characters[1][2])
+      #store how many times of attacks
       player1_attack_count +=1
 
       if characters[1][2] <= 0:
@@ -71,7 +73,6 @@ def fight_loop(player1, player2):
           print(f"{characters[1][0]} wins with {player2_attack_count} hits! {characters[0][0]} has been defeated.")
           break
 
-
 # empty list of character selection
 characters = []
 print("Welcome to the Dungeon!")
@@ -80,7 +81,9 @@ print("Let's create your character(s)!")
 # Player 1
 user_name1 = input("What is your name Player1 ? ")
 chosen_race, health_stat, strength_stat = create_character()
+#store info
 characters.append((user_name1, chosen_race, health_stat, strength_stat))
+#show info
 display_character(user_name1, chosen_race, health_stat, strength_stat)
 
 # Player 2
