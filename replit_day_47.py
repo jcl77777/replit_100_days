@@ -44,3 +44,5 @@ while True:
             exit()
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
+
+#have to study on random.choice 
