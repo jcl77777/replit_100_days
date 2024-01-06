@@ -46,3 +46,12 @@ while True:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
 #have to study on random.choice 
+'''
+    # Randomly pick two different players
+    name1 = random.choice(list(player_dict.keys()))
+    name2 = random.choice(list(player_dict.keys()))
+
+    # Ensure that name1 and name2 are different
+    while name1 == name2:
+        name2 = random.choice(list(player_dict.keys()))
+'''
