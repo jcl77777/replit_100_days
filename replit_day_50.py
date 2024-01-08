@@ -13,6 +13,8 @@ Nice! Your idea has been stored.
 '''
 
 import random
+import time
+import os
 
 file_path = "my_ideas.txt"
 f = open(file_path, "a+")
@@ -59,8 +61,12 @@ while True:
   choice = menu()
   if choice == "a":
     add = add_idea()
+    time.sleep(1)
+    os.system("clear")
   elif choice == "r":
     remove = remove_idea()
+    time.sleep(1)
+    os.system("clear")
   elif choice == "l":
     load_random()
   elif choice == "q":
