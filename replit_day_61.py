@@ -56,3 +56,23 @@ while True:
         add()
     else:
         view()
+
+
+#another solution for veiw
+'''
+def viewTweet():
+  matches = db.prefix("mes")
+  matches = matches[::-1]
+  counter = 0
+  for i in matches:
+    print(db[i])
+    print()
+    time.sleep(0.3)
+    counter+=1
+    if(counter%10==0):
+      carryOn = input("Next 10?: ")
+      if(carryOn.lower()=="no"):
+        break
+  time.sleep(1)
+  os.system("clear")
+  '''
