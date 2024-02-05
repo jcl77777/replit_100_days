@@ -5,26 +5,21 @@ app = Flask(__name__)
 # Dictionary to store user information
 logins = {}
 
-logins["miguel"] = {"password": "321"}
+logins["miguel"] = {"username": "miguel", "password": "321"}
 logins["cook"] = {"password": "123"}
 logins["james"] = {"password": "456"}
 
 @app.route("/login", methods=["POST"])
 def login():
     form = request.form
-    isThere = False
-    details ={}
-    try:
-      details = logins[form["username"]]
-      isThere = True
-    except:
-      return "Incorrect username or password."
-
-    if form["password"] == details["password"]:
-      return "You are logged in."
+    if form["username"] in logins:
+        details = logins[form["username"]]
+        if form["username"] == details["username"] and form["password"] == details["password"]:
+            return f"You are logged in {form['username']}"
+        else:
+            return "Incorrect username or password."
     else:
-      return "Incorrect username or password."
-
+        return "User does not exist."
 
 @app.route('/')
 def index():
