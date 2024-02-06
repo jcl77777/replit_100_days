@@ -1,34 +1,35 @@
 from replit import db
-from flask import Flask, request
+from flask import Flask, request, redirect
 
 app = Flask(__name__)
 
 @app.route('/login', methods=["POST"])
 def login():
-    username = request.form.get("username")
-    password = request.form.get("password")
+    keys = db.keys()
+    form = request.form
     # Check if username exists in the database
-    if username in db:
+    if form["username"] in keys:
         # Verify the password (here, you should compare hashed passwords)
-        if db[username] == password:
-            return f"Welcome back, {username}!"
+        if db[form["username"]] == form["password"]:
+            return f"""Welcome back, {form["username"]}!"""
         else:
             return "Invalid username or password"
     else:
-        return "User does not exist"
+        return redirect ("/create")
 
 
 @app.route("/create", methods=["POST"])
 def create_user():
-    username = request.form.get("username")
-    password = request.form.get("password")
-
+    keys = db.keys()
+    form = request.form
     # Check if the username already exists
-    if username in db:
-        return "Username already exists"
+    if form["username"] in keys:
+        #if exist, redirect to login page
+        return redirect("/login")
     else:
-        db[username] = password
-        return f"New user created successfully. Hello, {username}!"
+        # Create a new user
+        db[form["username"]] ={"password": form["password"]}
+        return f"""New user created successfully. Hello, {db[form]["username"]}!"""
 
 
 @app.route('/')
